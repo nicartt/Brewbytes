@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>BrweByte | Login Form</title>
+    <link rel="icon" type="image/x-icon" href="images/Logo.png"> 
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<style type="text/css">
+    body {
+        background: #3e4144;
+    }
+    .form {
+        margin: 50px auto;
+        width: 300px;
+        padding: 30px 25px;
+        background: white;
+    }
+    h1.login-title {
+        color: #666;
+        margin: 0px auto 25px;
+        font-size: 25px;
+        font-weight: 300;
+        text-align: center;
+    }
+    .login-input {
+        font-size: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 25px;
+        height: 25px;
+        width: calc(100% - 23px);
+    }
+    .login-input:focus {
+        border-color:#6e8095;
+        outline: none;
+    }
+    .login-button {
+        color: #fff;
+        background: #9F5C44;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .login-button:hover {
+        background-color: #64342C;
+        letter-spacing: .2rem;
+    }
+    .link {
+        color: #666;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 0px;
+    }
+    .link a {
+        color: #666;
+    }
+    h3 {
+        font-weight: normal;
+        text-align: center;
+    }
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+</style>
+
+<body> 
+    <form class="form" method="post" action="BrewByte.html" name="login" onsubmit="return validateForm()">
+        <center>
+            <img src="images/Logo.png" alt="" class="img img-fluid">
+        </center>
+        <hr />
+        <h1 class="login-title">Login</h1>
+        <input type="text" class="login-input" name="username" id="username" placeholder="Username" autofocus="true"/>
+        <input type="password" class="login-input" name="password" id="password" placeholder="Password"/>
+        <input type="submit" value="Login" name="submit" class="login-button"/>
+        <hr />
+    </form>
+
+    <script>
+        // Define the username and password
+        var storedUsername = "zxcvb";
+        var storedPassword = "qwerty";
+
+        function validateForm() {
+            var username = document.getElementById("username").value.trim(); // Trim leading and trailing spaces
+            var password = document.getElementById("password").value.trim(); // Trim leading and trailing spaces
+            
+            if (username.toLowerCase() !== storedUsername.toLowerCase() || password !== storedPassword) {
+                alert("Invalid username or password.");
+                return false;
+            }
+            return true;
+        }
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do something with the user's ID
+            console.log('Name: ' + profile.getName()); // Do something with the user's name
+            console.log('Image URL: ' + profile.getImageUrl()); // Do something with the user's image URL
+            console.log('Email: ' + profile.getEmail()); // Do something with the user's email
+        }
+    </script>
+</body>
+</html>
